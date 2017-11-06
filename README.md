@@ -24,6 +24,6 @@ To install the web dependencies, run
 
 ## Running
 
-To serve the website, run
+To serve the website in development, run
 
-    FLASK_APP=app.py flask run
+    FLASK_DEBUG=1 FLASK_APP=app.py flask run
