@@ -5,3 +5,7 @@ python:
 install:
   - 'pip install -r requirements.txt'
   - 'yarn'
+
+script:
+  - 'flake8 .'
+  - 'tslint assets/js/'
