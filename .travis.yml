@@ -8,4 +8,4 @@ install:
 
 script:
   - 'flake8 .'
-  - 'tslint assets/js/'
+  - 'yarn run tslint assets/js/'
