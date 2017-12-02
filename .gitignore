@@ -59,7 +59,7 @@ local_settings.py
 # Flask stuff:
 instance/
 .webassets-cache
-app/static/js/bundle.js
+app/static
 
 # Scrapy stuff:
 .scrapy
