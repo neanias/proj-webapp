@@ -8,4 +8,5 @@ install:
 
 script:
   - 'flake8 app'
-  - 'yarn run lint'
+  - 'yarn run tslinter'
+  - 'yarn run sasslinter'
