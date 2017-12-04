@@ -31,7 +31,13 @@
     </svg>
   </div>
   <div class="col">
-    <p>Azure, a saltire argent.</p>
+    <form action="/_parse" method="post" accept-charset="utf-8">
+      <div class="form-group">
+        <label for="blazon" class="control-label">Enter blazon</label>
+        <textarea class="form-control" type="textarea" name="blazon" id="blazon" rows="5" cols="40"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Draw</button>
+    </form>
   </div>
 </div>
 {% endblock %}
