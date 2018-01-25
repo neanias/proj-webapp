@@ -39,13 +39,25 @@ def parse_blazon(blazon):
                 }
             ]
         }
-    else:
+    elif blazon.lower() == "sinister":
         payload = {
-            "field": "gules",
+            "field": "or",
             "charges": [
                 {
-                    "charge": "bend_sinister",
-                    "tincture": "sable"
+                    "charge": "bend",
+                    "sinister": True,
+                    "tincture": "vert"
+                }
+            ]
+        }
+    else:
+        payload = {
+            "field": "argent",
+            "charges": [
+                {
+                    "charge": "bend",
+                    "sinister": True,
+                    "tincture": "gules"
                 }
             ]
         }
