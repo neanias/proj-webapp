@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 <h2>Honours Project</h2>
-<p>Does some cool stuff</p>
+<p>Draws shields</p>
 <div class="row">
   <div class="col">
     <svg
@@ -34,7 +34,7 @@
     <form action="/_parse" method="post" accept-charset="utf-8">
       <div class="form-group">
         <label for="blazon" class="control-label">Enter blazon</label>
-        <textarea class="form-control" type="textarea" name="blazon" id="blazon" rows="5" cols="40"></textarea>
+        <textarea class="form-control" placeholder="Enter blazon" required="true" name="blazon" id="blazon" rows="5" cols="40"></textarea>
       </div>
       <button type="submit" class="btn btn-success">Draw</button>
     </form>
