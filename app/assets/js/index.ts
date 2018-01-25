@@ -1,27 +1,62 @@
-import * as d3 from "d3";
+import * as d3 from "d3-selection";
 import * as $ from "jquery";
-import { chargePaths, IBlazon, ICharge } from "./charge_shapes";
+import ChargeShapes from "./charge_shapes";
+import { IBlazon, ICharge } from "./interfaces";
 
 const svg = d3.select("svg");
 const shield = svg.select("#shield");
 
 function drawShield(blazon: IBlazon): void {
   clearShield();
-  shield.attr("class", blazon.field);
-  for (const charge of blazon.charges) {
-    svg.append("path")
-          .attr("id", charge.charge)
-          .attr("class", charge.tincture)
-          .attr("d", chargePaths[charge.charge]);
+  shield.classed(blazon.field, true);
+  for (const charge of blazon.charges) { drawCharge(charge); }
+}
+
+function drawCharge(charge: ICharge): void {
+  const chargeId = `${charge.charge}_${getRandomInt(512)}`;
+  if (charge.charge === "chief") {
+    svg.append("rect").attr("id", chargeId);
+    // svg.append(createLayer(chargeId)).append("rect").attr("id", chargeId);
+  } else {
+    svg.append("path").attr("id", chargeId);
+  }
+  const currentCharge = svg.select(`#${chargeId}`);
+
+  // Apply specifications
+  if (!ChargeShapes.chargePaths.has(charge.charge)) {
+    throw new Error(`Don't know how to draw ${charge.charge}`);
+  }
+
+  // forEach returns the value before the pair
+  ChargeShapes.chargePaths.get(charge.charge).forEach((property, attribute) => {
+    currentCharge.attr(attribute, property)
+                 .classed(charge.tincture, true);
+  });
+
+  if (charge.sinister) {
+    currentCharge.attr("transform", "matrix(-1,0,0,1,236.58573,0) translate(-23.2, -0.5)");
   }
 }
 
 function clearShield(): void {
   $("path").each((index, element) => {
-    if (!$(element).is("#shield")) {
+    if ($(element).is("#shield")) {
+      $(element).removeClass();
+    } else {
       element.remove();
     }
   });
+}
+
+function createLayer(chargeId: string): Element {
+  const newChargeLayer: Element = document.createElement("g");
+  const chargeIdNumber: string = chargeId.split("_", 1)[1];
+  newChargeLayer.setAttribute("id", `layer_${chargeIdNumber}`);
+  return newChargeLayer;
+}
+
+function getRandomInt(max: number) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 // Capture form output, then send it to backend
