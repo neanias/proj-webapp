@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, 'app', 'assets'),
-  entry: ['./js/index.ts', './scss/main.sass'],
+  entry: ['./ts/index.ts', './scss/main.sass'],
   devtool: 'inline-source-map',
   module: {
     rules: [
