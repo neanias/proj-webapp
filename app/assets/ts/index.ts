@@ -5,6 +5,7 @@ import { IBlazon, ICharge } from "./interfaces";
 
 const svg = d3.select("svg");
 const shield = svg.select("#shield");
+const chargeLayer = svg.select("#charge_layer");
 
 function drawShield(blazon: IBlazon): void {
   clearShield();
@@ -15,10 +16,10 @@ function drawShield(blazon: IBlazon): void {
 function drawCharge(charge: ICharge): void {
   const chargeId = `${charge.charge}_${getRandomInt(512)}`;
   if (charge.charge === "chief") {
-    svg.append("rect").attr("id", chargeId);
+    chargeLayer.append("rect").attr("id", chargeId);
     // svg.append(createLayer(chargeId)).append("rect").attr("id", chargeId);
   } else {
-    svg.append("path").attr("id", chargeId);
+    chargeLayer.append("path").attr("id", chargeId);
   }
   const currentCharge = svg.select(`#${chargeId}`);
 
@@ -39,13 +40,8 @@ function drawCharge(charge: ICharge): void {
 }
 
 function clearShield(): void {
-  $("path").each((index, element) => {
-    if ($(element).is("#shield")) {
-      $(element).removeClass();
-    } else {
-      element.remove();
-    }
-  });
+  $("#charge_layer").children().each((_, element) => { element.remove(); });
+  $("#shield").removeClass();
 }
 
 function createLayer(chargeId: string): Element {
