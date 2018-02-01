@@ -1,0 +1,39 @@
+{
+  "scrope": {
+    "field": "azure",
+    "charges": [
+      {
+        "charge": "bend",
+        "tincture": "or"
+      }
+    ]
+  },
+  "st andrew": {
+    "field": "azure",
+    "charges": [
+      {
+        "charge": "saltire",
+        "tincture": "argent"
+      }
+    ]
+  },
+  "sinister": {
+    "field": "or",
+    "charges": [
+      {
+        "charge": "bend",
+        "sinister": true,
+        "tincture": "vert"
+      }
+    ]
+  },
+  "chief": {
+    "field": "purpure",
+    "charges": [
+      {
+        "charge": "chief",
+        "tincture": "gules"
+      }
+    ]
+  }
+}

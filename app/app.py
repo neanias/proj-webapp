@@ -1,6 +1,15 @@
+import json
+import os
+
 from flask import Flask, render_template, request, jsonify
 
+
 app = Flask(__name__)
+
+
+BLAZONS = None
+with open(os.path.join(os.path.dirname(__file__), 'blazons.json'), 'r') as blazon_file:
+    BLAZONS = json.load(blazon_file)
 
 
 @app.route("/")
@@ -18,48 +27,15 @@ def parse():
 
 def parse_blazon(blazon):
     """Dummy method in place of parser"""
-    payload = {}
-    if blazon.lower() == "scrope":
-        payload = {
-            "field": "azure",
-            "charges": [
-                {
-                    "charge": "bend",
-                    "tincture": "or"
-                }
-            ]
-        }
-    elif blazon.lower() == "st andrew":
-        payload = {
-            "field": "azure",
-            "charges": [
-                {
-                    "charge": "saltire",
-                    "tincture": "argent"
-                }
-            ]
-        }
-    elif blazon.lower() == "sinister":
-        payload = {
-            "field": "or",
-            "charges": [
-                {
-                    "charge": "bend",
-                    "sinister": True,
-                    "tincture": "vert"
-                }
-            ]
-        }
-    else:
-        payload = {
-            "field": "argent",
-            "charges": [
-                {
-                    "charge": "bend",
-                    "sinister": True,
-                    "tincture": "gules"
-                }
-            ]
-        }
+    payload = BLAZONS.get(blazon.lower(), {
+        "field": "argent",
+        "charges": [
+            {
+                "charge": "bend",
+                "sinister": True,
+                "tincture": "gules"
+            }
+        ]
+    })
 
     return payload
