@@ -8,7 +8,7 @@
     "allowJs": true
   },
   "include": [
-    "app/assets/js/*.ts"
+    "app/assets/ts/*.ts"
   ],
   "exclude": [
     "node_modules"
