@@ -7,5 +7,6 @@ install:
   - 'yarn'
 
 script:
-  - 'flake8 .'
-  - 'yarn run tslint assets/js/'
+  - 'flake8 app'
+  - 'yarn run tslinter'
+  - 'yarn run sasslinter'
