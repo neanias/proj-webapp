@@ -27,6 +27,15 @@
       }
     ]
   },
+  "cross": {
+    "field": "sable",
+    "charges": [
+      {
+        "charge": "cross",
+        "tincture": "or"
+      }
+    ]
+  },
   "chief": {
     "field": "purpure",
     "charges": [
