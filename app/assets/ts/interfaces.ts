@@ -1,15 +1,4 @@
-export interface ICharge {
-  charge: string;
-  sinister?: boolean;
-  tincture?: string;
-}
-
-export interface IBlazon {
-  field: Field;
-  charges: ICharge[];
-}
-
-enum Field {
+export enum Field {
   Quarterly = "quarterly",
   Or = "or",
   Argent = "argent",
@@ -18,4 +7,22 @@ enum Field {
   Purpure = "purpure",
   Sable = "sable",
   Vert = "vert",
+}
+
+export enum Charge {
+  Bend = "bend",
+  Cross = "cross",
+  Chief = "chief",
+  Saltire = "saltire",
+}
+
+export interface ICharge {
+  charge: Charge;
+  sinister?: boolean;
+  tincture?: string;
+}
+
+export interface IBlazon {
+  field: Field;
+  charges: ICharge[];
 }
