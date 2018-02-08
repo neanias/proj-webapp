@@ -1,7 +1,7 @@
 import * as d3 from "d3-selection";
 import * as $ from "jquery";
 import ChargeShapes from "./charge_shapes";
-import { IBlazon, ICharge } from "./interfaces";
+import { Charge, Field, IBlazon, ICharge } from "./interfaces";
 
 const svg = d3.select("svg");
 const shield = svg.select("#shield");
@@ -15,7 +15,7 @@ function drawShield(blazon: IBlazon): void {
 
 function drawCharge(charge: ICharge): void {
   const chargeId = `${charge.charge}_${getRandomInt(512)}`;
-  if (charge.charge === "chief") {
+  if (charge.charge === Charge.Chief) {
     chargeLayer.append("rect").attr("id", chargeId);
     // svg.append(createLayer(chargeId)).append("rect").attr("id", chargeId);
   } else {
