@@ -162,3 +162,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# Auto-generated docs
+docs
