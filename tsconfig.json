@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "strictNullChecks": true,
     "outDir": "app/assets/js",
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "es6",
+    "target": "es6",
     "lib": ["es2017", "dom"],
-    "allowJs": true
   },
   "include": [
     "app/assets/ts/*.ts"

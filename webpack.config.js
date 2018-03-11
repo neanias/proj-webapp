@@ -30,7 +30,7 @@ module.exports = {
     new ExtractTextPlugin({
       filename: './css/[name].bundle.css',
       allChunks: true
-    })
+    }),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.sass', '.scss', '.css']
