@@ -44,5 +44,89 @@
         "tincture": "gules"
       }
     ]
+  },
+  "quarterly": {
+    "field": "quarterly",
+    "quarters": [
+      {
+        "field": "gules",
+        "charges": [
+          {
+            "charge": "bend",
+            "tincture": "sable"
+          }
+        ]
+      },
+      {
+        "field": "azure",
+        "charges": [
+          {
+            "charge": "chief",
+            "tincture": "or"
+          }
+        ]
+      },
+      {
+        "field": "azure",
+        "charges": [
+          {
+            "charge": "chief",
+            "tincture": "or"
+          }
+        ]
+      },
+      {
+        "field": "gules",
+        "charges": [
+          {
+            "charge": "bend",
+            "tincture": "sable"
+          }
+        ]
+      }
+    ]
+  },
+  "sinister quarterly": {
+    "field": "quarterly",
+    "quarters": [
+      {
+        "field": "gules",
+        "charges": [
+          {
+            "charge": "bend",
+            "tincture": "sable",
+            "sinister": true
+          }
+        ]
+      },
+      {
+        "field": "azure",
+        "charges": [
+          {
+            "charge": "chief",
+            "tincture": "or"
+          }
+        ]
+      },
+      {
+        "field": "azure",
+        "charges": [
+          {
+            "charge": "chief",
+            "tincture": "or"
+          }
+        ]
+      },
+      {
+        "field": "gules",
+        "charges": [
+          {
+            "charge": "bend",
+            "tincture": "sable",
+            "sinister": true
+          }
+        ]
+      }
+    ]
   }
 }
