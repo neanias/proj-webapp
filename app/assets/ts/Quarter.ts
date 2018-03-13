@@ -2,13 +2,13 @@ import * as d3 from "d3-selection";
 
 import ChargeRenderer from "./ChargeRenderer";
 import { EQuarter, ETincture, ICharge } from "./interfaces";
-import QuarterShape from "./QuarterShape";
+import QuarterRenderer from "./QuarterRenderer";
 
 export default class Quarter {
   /** Specifies which of the quarters this object will render. Lines up with paths in [[ChargeShapes]]. */
   private quarter: EQuarter;
   /** Adds a specific shape for drawing the quarter, acts like a whole shield for the [[charges]]. */
-  private quarterShape: QuarterShape;
+  private quarterShape: QuarterRenderer;
   /** Defines the tincture of the field */
   private field: ETincture;
   /** The [[Charge]]s to render in this quarter. */
@@ -25,7 +25,7 @@ export default class Quarter {
     this.charges = this.instantiateCharges(charges);
     this.svg = svg;
     this.chargesLayer = chargesLayer;
-    this.quarterShape = new QuarterShape(chargesLayer, field, this.quarter, false);
+    this.quarterShape = new QuarterRenderer(chargesLayer, field, this.quarter, false);
   }
 
   public draw(): void {

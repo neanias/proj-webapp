@@ -8,7 +8,7 @@ import { ECharge, EQuarter, ETincture } from "./interfaces";
  * Extension of [[Charge]] class specifically for drawing a quarter [[ChargeShape]] onto the shield. This is used in
  * [[Quarter]] to sandbox the [[Charge]] being drawn in that quarter.
  */
-export default class QuarterShape extends ChargeRenderer {
+export default class QuarterRenderer extends ChargeRenderer {
   constructor(chargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>, tincture: ETincture,
               charge: ECharge | EQuarter, sinister: boolean) {
     super(chargesLayer, tincture, charge, sinister);
