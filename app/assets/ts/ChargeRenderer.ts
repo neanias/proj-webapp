@@ -4,10 +4,10 @@ import ChargeShapes from "./ChargeShapes";
 import { ECharge, EQuarter, ETincture, ICharge } from "./interfaces";
 
 /**
- * Charge is to wrap a charge object sent to the server and to provide a single point of access to have charges
+ * ChargeRenderer is to wrap a charge object sent to the server and to provide a single point of access to have charges
  * draw onto the SVG canvas.
  */
-export default class Charge {
+export default class ChargeRenderer {
   /** GUID for this charge. Theoretically unique, probably not `¯\_(ツ)_/¯` */
   protected chargeId: string;
   /** The D3 selection for just the charge_layer `<g/>` element */

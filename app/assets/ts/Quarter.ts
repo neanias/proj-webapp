@@ -1,6 +1,6 @@
 import * as d3 from "d3-selection";
 
-import Charge from "./Charge";
+import ChargeRenderer from "./ChargeRenderer";
 import { EQuarter, ETincture, ICharge } from "./interfaces";
 import QuarterShape from "./QuarterShape";
 
@@ -12,7 +12,7 @@ export default class Quarter {
   /** Defines the tincture of the field */
   private field: ETincture;
   /** The [[Charge]]s to render in this quarter. */
-  private charges: Charge[];
+  private charges: ChargeRenderer[];
   /** The D3 selection for the whole svg element. Useful for adding paths as clipPaths. */
   private svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
   /** The D3 selection for just the charge_layer `<g/>` element */
@@ -55,13 +55,13 @@ export default class Quarter {
   }
 
   /**
-   * Iterates over [[ICharge]] objects and builds them into instances of [[Charge]].
+   * Iterates over [[ICharge]] objects and builds them into instances of [[ChargeRenderer]].
    * @param charges  These generally are extracted from the server's JSON payload ([[data]]).
    */
-  private instantiateCharges(charges: ICharge[]): Charge[] {
-    const chargeObjects: Charge[] = new Array<Charge>();
+  private instantiateCharges(charges: ICharge[]): ChargeRenderer[] {
+    const chargeObjects: ChargeRenderer[] = new Array<ChargeRenderer>();
     for (const charge of charges) {
-      chargeObjects.push(new Charge(
+      chargeObjects.push(new ChargeRenderer(
         this.chargesLayer,
         charge.tincture!,
         charge.charge,

@@ -1,7 +1,7 @@
 import * as d3 from "d3-selection";
 import * as $ from "jquery";
 
-import Charge from "./Charge";
+import ChargeRenderer from "./ChargeRenderer";
 import ChargeShapes from "./ChargeShapes";
 import { ECharge, ETincture, IBlazon, ICharge, IQuarterly } from "./interfaces";
 import Quarter from "./Quarter";
@@ -25,8 +25,8 @@ export default class Blazon {
   private field: ETincture;
   /** Optional array of Quarters. Populated if quarterly shield */
   private quarters?: Quarter[];
-  /** Optional array of Charges. Populated if non-quarterly shield */
-  private charges?: Charge[];
+  /** Optional array of ChargeRenderers. Populated if non-quarterly shield */
+  private charges?: ChargeRenderer[];
 
   /**
    * @param svg  The D3 selection, generally the top level SVG node in the template
@@ -60,13 +60,13 @@ export default class Blazon {
   }
 
   /**
-   * Iterates over [[ICharge]] objects and builds them into instances of [[Charge]].
+   * Iterates over [[ICharge]] objects and builds them into instances of [[ChargeRenderer]].
    * @param charges  These generally are extracted from the server's JSON payload ([[data]]).
    */
-  private instantiateCharges(charges: ICharge[]): Charge[] {
-    const chargeObjects: Charge[] = new Array<Charge>();
+  private instantiateCharges(charges: ICharge[]): ChargeRenderer[] {
+    const chargeObjects: ChargeRenderer[] = new Array<ChargeRenderer>();
     for (const charge of charges) {
-      chargeObjects.push(new Charge(
+      chargeObjects.push(new ChargeRenderer(
         this.chargesLayer,
         charge.tincture!,
         charge.charge,
