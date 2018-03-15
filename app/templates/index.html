@@ -33,7 +33,7 @@
         <path id="shield"
               d="m 6.5,6.5 0,70.556376999999983 C 6.5,217.94823 110.38712,282.97591 130,293.5 c 19.61288,-10.52409 123.5,-75.55177 123.5,-216.443623 L 253.5,6.5 6.5,6.5 z" />
       </g>
-      <g id="charges_layer">
+      <g id="charges_layer" clip-path="url(#shield_clip_path)">
       </g>
     </svg>
   </div>
@@ -41,7 +41,7 @@
     <form action="/_parse" method="post" accept-charset="utf-8">
       <div class="form-group">
         <label for="blazon" class="control-label">Enter blazon</label>
-        <textarea class="form-control" placeholder="Enter blazon" required="true" name="blazon" id="blazon" rows="5" cols="40"></textarea>
+        <textarea class="form-control" placeholder="E.g. Azure, a bend Or" required="true" name="blazon" id="blazon" rows="5" cols="40"></textarea>
       </div>
       <button type="submit" class="btn btn-success">Draw</button>
     </form>
