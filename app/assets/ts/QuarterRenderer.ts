@@ -37,4 +37,13 @@ export default class QuarterRenderer extends Renderer {
 
     this.drawQuarter(currentQuarter);
   }
+
+  private drawQuarter(currentQuarter: d3.Selection<d3.BaseType, {}, HTMLElement, any>): void {
+    // forEach returns the value before the key
+    QuarterShapes.quarterShapes(this.quarter).dimensions.forEach((property, attribute) => {
+      currentQuarter.attr(attribute, property)
+        .classed(this.tincture, true);
+    });
+ }
+
 }
