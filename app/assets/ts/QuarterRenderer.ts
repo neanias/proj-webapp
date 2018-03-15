@@ -2,7 +2,7 @@ import * as d3 from "d3-selection";
 
 import Renderer from "./Renderer";
 
-import { ECharge, EQuarter, ETincture } from "./interfaces";
+import { EQuarter, ETincture } from "./interfaces";
 import QuarterShapes from "./QuarterShapes";
 
 /**

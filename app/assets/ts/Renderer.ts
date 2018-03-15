@@ -2,8 +2,6 @@ import * as d3 from "d3-selection";
 
 import { ETincture } from "./interfaces";
 
-import ChargeShapes from "./ChargeShapes";
-
 export default abstract class Renderer {
   /** GUID for this charge. Theoretically unique, probably not `¯\_(ツ)_/¯` */
   protected chargeId: string;
