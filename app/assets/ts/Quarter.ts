@@ -8,30 +8,30 @@ export default class Quarter {
   /** Specifies which of the quarters this object will render. Lines up with paths in [[ChargeShapes]]. */
   private quarter: EQuarter;
   /** Adds a specific shape for drawing the quarter, acts like a whole shield for the [[charges]]. */
-  private quarterShape: QuarterRenderer;
+  private quarterRenderer: QuarterRenderer;
   /** Defines the tincture of the field */
   private field: ETincture;
-  /** The [[Charge]]s to render in this quarter. */
+  /** The [[ChargeRenderer]]s to render in this quarter. */
   private charges: ChargeRenderer[];
   /** The D3 selection for the whole svg element. Useful for adding paths as clipPaths. */
   private svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
   /** The D3 selection for just the charge_layer `<g/>` element */
-  private chargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
+  private parentsChargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
 
   constructor(index: number, field: ETincture, charges: ICharge[], svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>,
-              chargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>) {
+              parentsChargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>) {
     this.quarter = this.indexToQuarter(index);
     this.field = field;
     this.charges = this.instantiateCharges(charges);
     this.svg = svg;
-    this.chargesLayer = chargesLayer;
-    this.quarterShape = new QuarterRenderer(chargesLayer, field, this.quarter, false);
+    this.parentsChargesLayer = parentsChargesLayer;
+    this.quarterRenderer = new QuarterRenderer(parentsChargesLayer, field, this.quarter, false);
   }
 
   public draw(): void {
-    this.quarterShape.draw();
-    this.quarterShape.addClipPathDefinition(this.svg);
-    const quarterLayer = this.chargesLayer.select(`#${this.quarter}`);
+    this.quarterRenderer.draw();
+    this.quarterRenderer.addClipPathDefinition(this.svg);
+    const quarterLayer = this.parentsChargesLayer.select(`#${this.quarter}`);
 
     this.charges.forEach((charge) => {
       charge.updateChargesLayer(quarterLayer);
@@ -62,7 +62,7 @@ export default class Quarter {
     const chargeObjects: ChargeRenderer[] = new Array<ChargeRenderer>();
     for (const charge of charges) {
       chargeObjects.push(new ChargeRenderer(
-        this.chargesLayer,
+        this.parentsChargesLayer,
         charge.tincture!,
         charge.charge,
         charge.sinister || false,
