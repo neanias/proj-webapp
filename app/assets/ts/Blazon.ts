@@ -2,8 +2,7 @@ import * as d3 from "d3-selection";
 import * as $ from "jquery";
 
 import ChargeRenderer from "./ChargeRenderer";
-import ChargeShapes from "./ChargeShapes";
-import { ECharge, ETincture, IBlazon, ICharge } from "./interfaces";
+import { ETincture, IBlazon, ICharge } from "./interfaces";
 import Quarter from "./Quarter";
 
 /**
