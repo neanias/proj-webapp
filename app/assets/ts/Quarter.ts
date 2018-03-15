@@ -9,8 +9,6 @@ export default class Quarter {
   private quarter: EQuarter;
   /** Adds a specific shape for drawing the quarter, acts like a whole shield for the [[charges]]. */
   private quarterRenderer: QuarterRenderer;
-  /** Defines the tincture of the field */
-  private field: ETincture;
   /** The [[ChargeRenderer]]s to render in this quarter. */
   private charges: ChargeRenderer[];
   /** The D3 selection for the whole svg element. Useful for adding paths as clipPaths. */
@@ -21,7 +19,6 @@ export default class Quarter {
   constructor(index: number, field: ETincture, charges: ICharge[], svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>,
               parentsChargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>) {
     this.quarter = this.indexToQuarter(index);
-    this.field = field;
     this.charges = this.instantiateCharges(charges);
     this.svg = svg;
     this.parentsChargesLayer = parentsChargesLayer;
