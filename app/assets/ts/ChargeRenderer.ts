@@ -36,30 +36,35 @@ export default class ChargeRenderer extends Renderer {
     if (quarter) {
       chargeLayer.attr("clip-path", `url(#${quarter})`);
     }
+
+    this.applyTransforms(currentCharge, quarter);
   }
 
   protected drawCharge(currentCharge: d3.Selection<d3.BaseType, {}, HTMLElement, any>,
                        chargeLayer?: d3.Selection<d3.BaseType, {}, HTMLElement, any>): void {
     // Apply specifications
-    if (!ChargeShapes.chargePaths.has(this.charge)) {
+    if (!ChargeShapes.hasChargePath(this.charge)) {
       throw new Error(`Don't know how to draw ${this.charge}`);
     }
 
     // forEach returns the value before the key
-    ChargeShapes.chargePaths.get(this.charge)!.forEach((property, attribute) => {
+    ChargeShapes.chargeShapes(this.charge).dimensions.forEach((property, attribute) => {
       currentCharge.attr(attribute, property)
         .classed(this.tincture, true);
     });
   }
 
-    if (this.sinister && chargeLayer) {
-      chargeLayer.attr("transform", "matrix(-1,0,0,1,236.58573,0) translate(-23.2, -0.5)");
+  private applyTransforms(currentCharge: d3.Selection<d3.BaseType, {}, HTMLElement, any>, quarter?: EQuarter): void {
+    let transform: string = "";
+    if (quarter && this.sinister) {
+      transform = `${quarter} sinister`;
+    } else if (quarter && !this.sinister) {
+      transform = quarter;
     } else if (this.sinister) {
-      currentCharge.attr("transform", "matrix(-1,0,0,1,236.58573,0) translate(-23.2, -0.5)");
+      transform = "sinister";
     }
-  }
 
-  private getRandomInt(max: number = 512) {
-    return Math.floor(Math.random() * Math.floor(max));
+    const transformToApply: string = ChargeShapes.chargeShapes(this.charge).transforms(transform);
+    currentCharge.attr("transform", transformToApply);
   }
 }
