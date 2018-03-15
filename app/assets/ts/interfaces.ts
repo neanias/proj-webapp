@@ -41,8 +41,3 @@ export interface IBlazon {
   field: ETincture;
   charges: ICharge[];
 }
-
-export interface IQuarterly {
-  field: "quarterly";
-  quarters: IBlazon[];
-}

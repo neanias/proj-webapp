@@ -3,7 +3,7 @@ import * as $ from "jquery";
 
 import ChargeRenderer from "./ChargeRenderer";
 import ChargeShapes from "./ChargeShapes";
-import { ECharge, ETincture, IBlazon, ICharge, IQuarterly } from "./interfaces";
+import { ECharge, ETincture, IBlazon, ICharge } from "./interfaces";
 import Quarter from "./Quarter";
 
 /**

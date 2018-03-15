@@ -1,7 +1,7 @@
 import * as d3 from "d3-selection";
 
 import ChargeShapes from "./ChargeShapes";
-import { ECharge, EQuarter, ETincture, ICharge } from "./interfaces";
+import { ECharge, EQuarter, ETincture } from "./interfaces";
 import Renderer from "./Renderer";
 
 /**
