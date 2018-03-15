@@ -2,43 +2,29 @@ import * as d3 from "d3-selection";
 
 import ChargeShapes from "./ChargeShapes";
 import { ECharge, EQuarter, ETincture, ICharge } from "./interfaces";
+import Renderer from "./Renderer";
 
 /**
  * ChargeRenderer is to wrap a charge object sent to the server and to provide a single point of access to have charges
  * draw onto the SVG canvas.
  */
-export default class ChargeRenderer {
-  /** GUID for this charge. Theoretically unique, probably not `¯\_(ツ)_/¯` */
-  protected chargeId: string;
-  /** The D3 selection for just the charge_layer `<g/>` element */
-  protected chargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
+export default class ChargeRenderer extends Renderer {
   /** The particular charge to be drawn, all paths are specified in [[ChargeShapes]]. */
-  protected charge: ECharge | EQuarter;
+  protected charge: ECharge;
   /** Whether the charge should be sinister (right-to-left), should only apply to bends. */
   protected sinister: boolean;
-  /** The tincture (colour) of the charge */
-  protected tincture: ETincture;
 
-  constructor(chargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>, tincture: ETincture,
-              charge: ECharge | EQuarter, sinister: boolean) {
-    this.tincture = tincture;
+  constructor(parentChargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>, tincture: ETincture,
+              charge: ECharge, sinister: boolean) {
+    super(parentChargesLayer, tincture);
     this.charge = charge;
     this.chargeId = `${this.charge}_${this.getRandomInt()}`;
-    this.chargesLayer = chargesLayer;
     this.sinister = sinister;
   }
 
-  /**
-   * Updates the current [[chargesLayer]]. This is useful for [[Quarter]] when it needs to draw a charge in a
-   * newly-generated layer.
-   */
-  public updateChargesLayer(newChargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>): void {
-    this.chargesLayer = newChargesLayer;
-  }
-
   /** Generates new layer for this charge, then draws on the charge, applying transforms where appropriate */
-  public draw(clipPathUrl?: string): void {
-    const chargeLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any> = this.chargesLayer.append("g")
+  public draw(quarter?: EQuarter): void {
+    const chargeLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any> = this.parentChargesLayer.append("g")
       .attr("id", this.chargeId);
 
     const currentCharge: d3.Selection<d3.BaseType, {}, HTMLElement, any> = (this.charge === ECharge.Chief)
@@ -47,8 +33,8 @@ export default class ChargeRenderer {
 
     this.drawCharge(currentCharge, chargeLayer);
 
-    if (clipPathUrl) {
-      currentCharge.attr("clip-path", `url(#${clipPathUrl})`);
+    if (quarter) {
+      chargeLayer.attr("clip-path", `url(#${quarter})`);
     }
   }
 
@@ -64,6 +50,7 @@ export default class ChargeRenderer {
       currentCharge.attr(attribute, property)
         .classed(this.tincture, true);
     });
+  }
 
     if (this.sinister && chargeLayer) {
       chargeLayer.attr("transform", "matrix(-1,0,0,1,236.58573,0) translate(-23.2, -0.5)");
