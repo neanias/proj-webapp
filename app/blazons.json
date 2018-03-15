@@ -17,6 +17,33 @@
       }
     ]
   },
+  "st george": {
+    "field": "argent",
+    "charges": [
+      {
+        "charge": "cross",
+        "tincture": "gules"
+      }
+    ]
+  },
+  "st david": {
+    "field": "sable",
+    "charges": [
+      {
+        "charge": "cross",
+        "tincture": "or"
+      }
+    ]
+  },
+  "st patrick": {
+    "field": "argent",
+    "charges": [
+      {
+        "charge": "saltire",
+        "tincture": "gules"
+      }
+    ]
+  },
   "sinister": {
     "field": "or",
     "charges": [
@@ -24,15 +51,6 @@
         "charge": "bend",
         "sinister": true,
         "tincture": "vert"
-      }
-    ]
-  },
-  "cross": {
-    "field": "sable",
-    "charges": [
-      {
-        "charge": "cross",
-        "tincture": "or"
       }
     ]
   },
@@ -124,6 +142,131 @@
             "charge": "bend",
             "tincture": "sable",
             "sinister": true
+          }
+        ]
+      }
+    ]
+  },
+  "sinister quarterly reversed": {
+    "field": "quarterly",
+    "quarters": [
+      {
+        "field": "azure",
+        "charges": [
+          {
+            "charge": "chief",
+            "tincture": "or"
+          }
+        ]
+      },
+      {
+        "field": "gules",
+        "charges": [
+          {
+            "charge": "bend",
+            "tincture": "sable",
+            "sinister": true
+          }
+        ]
+      },
+      {
+        "field": "gules",
+        "charges": [
+          {
+            "charge": "bend",
+            "tincture": "sable",
+            "sinister": true
+          }
+        ]
+      },
+      {
+        "field": "azure",
+        "charges": [
+          {
+            "charge": "chief",
+            "tincture": "or"
+          }
+        ]
+      }
+    ]
+  },
+  "britain": {
+    "field": "quarterly",
+    "quarters": [
+      {
+        "field": "argent",
+        "charges": [
+          {
+            "charge": "cross",
+            "tincture": "gules"
+          }
+        ]
+      },
+      {
+        "field": "azure",
+        "charges": [
+          {
+            "charge": "saltire",
+            "tincture": "argent"
+          }
+        ]
+      },
+      {
+        "field": "azure",
+        "charges": [
+          {
+            "charge": "saltire",
+            "tincture": "argent"
+          }
+        ]
+      },
+      {
+        "field": "argent",
+        "charges": [
+          {
+            "charge": "cross",
+            "tincture": "gules"
+          }
+        ]
+      }
+    ]
+  },
+  "reversed britain": {
+    "field": "quarterly",
+    "quarters": [
+      {
+        "field": "azure",
+        "charges": [
+          {
+            "charge": "saltire",
+            "tincture": "argent"
+          }
+        ]
+      },
+      {
+        "field": "argent",
+        "charges": [
+          {
+            "charge": "cross",
+            "tincture": "gules"
+          }
+        ]
+      },
+      {
+        "field": "argent",
+        "charges": [
+          {
+            "charge": "cross",
+            "tincture": "gules"
+          }
+        ]
+      },
+      {
+        "field": "azure",
+        "charges": [
+          {
+            "charge": "saltire",
+            "tincture": "argent"
           }
         ]
       }
