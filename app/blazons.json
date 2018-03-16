@@ -212,11 +212,11 @@
         ]
       },
       {
-        "field": "azure",
+        "field": "sable",
         "charges": [
           {
-            "charge": "saltire",
-            "tincture": "argent"
+            "charge": "cross",
+            "tincture": "or"
           }
         ]
       },
@@ -224,7 +224,7 @@
         "field": "argent",
         "charges": [
           {
-            "charge": "cross",
+            "charge": "saltire",
             "tincture": "gules"
           }
         ]
