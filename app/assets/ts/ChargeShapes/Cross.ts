@@ -14,7 +14,7 @@ export default class Cross extends AShape {
       case EQuarter.TR:
         return "translate(113, -8) scale(0.6)";
       case EQuarter.BL:
-        return "translate(0, 120) scale(0.6)";
+        return "translate(-9, 110) scale(0.6)";
       case EQuarter.BR:
         return "translate(110, 120) scale(0.6)";
       default:
