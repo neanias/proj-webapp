@@ -10,6 +10,7 @@ app = Flask(__name__)
 BLAZONS = None
 with open(os.path.join(os.path.dirname(__file__), 'blazons.json'), 'r') as blazon_file:
     BLAZONS = json.load(blazon_file)
+    BLAZONS['azure, a bend or'] = BLAZONS['scrope']
 
 
 @app.route("/")

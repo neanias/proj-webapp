@@ -20,7 +20,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.s(c|a)ss$/,
+        test: /\.sass$/,
         loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
         exclude: /node_modules/
       }
@@ -30,13 +30,13 @@ module.exports = {
     new ExtractTextPlugin({
       filename: './css/[name].bundle.css',
       allChunks: true
-    })
+    }),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.sass', '.scss', '.css']
   },
   output: {
-    filename: './js/bundle.js',
+    filename: './js/[name].bundle.js',
     path: path.resolve(__dirname, 'app', 'static')
   }
 };

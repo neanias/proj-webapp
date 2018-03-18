@@ -13,20 +13,25 @@
     "@types/jquery": "^3.2.16",
     "css-loader": "^0.28.7",
     "d3-selection": "^1.2.0",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "extract-text-webpack-plugin": "~4.0.0-alpha.0",
     "jquery": "^3.2.1",
     "node-sass": "^4.7.2",
-    "prettier": "1.7.4",
     "sass-lint": "^1.12.1",
     "sass-loader": "^6.0.6",
-    "ts-loader": "^3.1.1",
-    "tslint": "^5.8.0",
+    "ts-loader": "^4.0.0",
+    "tslint": "^5.9.0",
+    "typedoc": "^0.10.0",
     "typescript": "^2.6.1",
-    "webpack": "^3.8.1"
+    "webpack": "^4.0.0",
+    "webpack-cli": "^2.0.9"
   },
   "scripts": {
+    "docs": "typedoc --out docs app/assets/ts",
+    "devBuild": "webpack --mode development",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development -w",
     "lint": "yarn run tslinter && yarn run sasslinter",
-    "tslinter": "tslint -c tslint.json 'app/assets/js/*.ts' --fix",
+    "tslinter": "tslint -p . -c tslint.json",
     "sasslinter": "sass-lint app/assets/scss"
   }
 }
