@@ -5,7 +5,7 @@ import { EQuarter, ETincture, ICharge } from "./interfaces";
 import QuarterRenderer from "./QuarterRenderer";
 
 export default class Quarter {
-  /** Specifies which of the quarters this object will render. Lines up with paths in [[ChargeShapes]]. */
+  /** Specifies which of the quarters this object will render. Lines up with paths in [[QuarterShapes]]. */
   private quarter: EQuarter;
   /** Adds a specific shape for drawing the quarter, acts like a whole shield for the [[charges]]. */
   private quarterRenderer: QuarterRenderer;
@@ -25,6 +25,10 @@ export default class Quarter {
     this.quarterRenderer = new QuarterRenderer(parentsChargesLayer, field, this.quarter, false);
   }
 
+  /**
+   * Draws the quarter path from [[QuarterShapes]] onto the shield, then adds a clipPath definition in the `defs`
+   * element in the `svg` element. Next, hands off to the [[ChargeRenderer]] to draw the charges in that quarter.
+   */
   public draw(): void {
     this.quarterRenderer.draw();
     this.quarterRenderer.addClipPathDefinition(this.svg);
@@ -36,6 +40,11 @@ export default class Quarter {
     });
   }
 
+  /**
+   * The [[Quarter]] object is instantiated with an index from a `for` loop. This converts the index into an
+   * [[EQuarter]] member based on the index. (Quarters go top left, top right, bottom left, bottom right,
+   * zero-indexed.)
+   */
   private indexToQuarter(index: number): EQuarter {
     switch (index) {
       case 0:

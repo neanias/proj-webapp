@@ -22,7 +22,11 @@ export default class ChargeRenderer extends Renderer {
     this.sinister = sinister;
   }
 
-  /** Generates new layer for this charge, then draws on the charge, applying transforms where appropriate */
+  /**
+   * Generates new layer to contain the charge and a new, empty element for the charge to populate. Calls [[drawCharge]]
+   * to add in attributes and transformations (where necessary).
+   * @param quarter?  Optional argument that will add a `clip-path` attribute and specify quarterly transformations.
+   */
   public draw(quarter?: EQuarter): void {
     const chargeLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any> = this.parentChargesLayer.append("g")
       .attr("id", this.chargeId);
@@ -40,6 +44,10 @@ export default class ChargeRenderer extends Renderer {
     this.applyTransforms(currentCharge, quarter);
   }
 
+  /**
+   * Draws a charge onto the shield, as defined in [[ChargeShapes]].
+   * @param currentCharge  The element that the [[charge]] is being used for drawing.
+   */
   protected drawCharge(currentCharge: d3.Selection<d3.BaseType, {}, HTMLElement, any>): void {
     // Apply specifications
     if (!ChargeShapes.hasChargePath(this.charge)) {
@@ -53,6 +61,11 @@ export default class ChargeRenderer extends Renderer {
     });
   }
 
+  /**
+   * Applies transforms to the currentCharge, as defined in [[QuarterShapes]].
+   * @param currentCharge  The element that the [[charge]] is drawn in.
+   * @param quarter?  Optional parameter for specifying transformations within a quarter.
+   */
   private applyTransforms(currentCharge: d3.Selection<d3.BaseType, {}, HTMLElement, any>, quarter?: EQuarter): void {
     let transform: string = "";
     if (quarter && this.sinister) {

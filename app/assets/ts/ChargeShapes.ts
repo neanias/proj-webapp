@@ -6,7 +6,14 @@ import Chief from "./ChargeShapes/Chief";
 import Cross from "./ChargeShapes/Cross";
 import Saltire from "./ChargeShapes/Saltire";
 
+/**
+ * A class for accessing various drawable charges.
+ */
 export default class ChargeShapes {
+  /**
+   * Returns a new element for the specified [[ECharge]]. This is then usually chained to access the dimensions or
+   * transformations.
+   */
   public static chargeShapes(charge: ECharge): AShape {
     switch (charge) {
       case ECharge.Bend:
@@ -20,9 +27,15 @@ export default class ChargeShapes {
     }
   }
 
+  /**
+   * Boolean method for checking if the specified charge is known.
+   */
   public static hasChargePath(charge: string): boolean {
     return ChargeShapes.chargePaths.includes(charge.toLowerCase());
   }
 
+  /**
+   * Known charges.
+   */
   private static chargePaths: string[] = ["bend", "chief", "cross", "saltire"];
 }

@@ -103,8 +103,8 @@ export default class Blazon {
   }
 
   /**
-   * Loops over the #charges_layer's children in the template, removing them, before finally removing the class on the
-   * shield
+   * Loops over the `#charges_layer`'s children in the template, removing them, before finally removing the class on the
+   * shield.
    */
   private clearShield(): void {
     $("#charges_layer").children().each((_, element) => element.remove());

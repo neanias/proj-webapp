@@ -18,7 +18,10 @@ export default class QuarterRenderer extends Renderer {
     this.quarter = quarter;
   }
 
-  /** Generates new layer for this charge, then draws on the charge, applying transforms where appropriate */
+  /**
+   * Generates new layer for this quarter, generates a new `path` element in the layer and calls [[drawQuarter]] to
+   * populate them.
+   */
   public draw(): void {
     const quarterLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any> = this.parentChargesLayer.append("g")
       .attr("id", this.quarter);
@@ -28,6 +31,10 @@ export default class QuarterRenderer extends Renderer {
     this.drawQuarter(currentQuarter);
   }
 
+  /**
+   * 'Draws' a path in a `clipPath` element in `defs` element. This means that charges can be larger than the quarter
+   * that contains them, but not infringe on neighbouring quarters.
+   */
   public addClipPathDefinition(svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>): void {
     const defs: d3.Selection<d3.BaseType, {}, HTMLElement, any> = svg.select("defs");
     const clipPath: d3.Selection<d3.BaseType, {}, HTMLElement, any> = defs.append("clipPath").attr("id", this.quarter);
@@ -38,6 +45,10 @@ export default class QuarterRenderer extends Renderer {
     this.drawQuarter(currentQuarter);
   }
 
+  /**
+   * Gives the passed in `path` element the attributes for this quarter.
+   * @param currentQuarter  The `path` element for the quarter.
+   */
   private drawQuarter(currentQuarter: d3.Selection<d3.BaseType, {}, HTMLElement, any>): void {
     // forEach returns the value before the key
     QuarterShapes.quarterShapes(this.quarter).dimensions.forEach((property, attribute) => {
