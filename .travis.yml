@@ -10,3 +10,4 @@ script:
   - 'flake8 app'
   - 'yarn run tslinter'
   - 'yarn run sasslinter'
+  - 'yarn test'
