@@ -18,6 +18,8 @@ To install the Python dependencies, run
 
 ### JavaScript
 
+To install `yarn`, [find instructions here](https://yarnpkg.com/en/docs/install).
+
 To install the web dependencies, run
 
     yarn install
@@ -27,3 +29,15 @@ To install the web dependencies, run
 To serve the website in development, run
 
     FLASK_DEBUG=1 FLASK_APP=app.py flask run
+
+## Testing
+
+To check unit tests are green, run
+
+    yarn test
+
+### Coverage
+
+Unit test coverage can be found by running
+
+    yarn test --coverage
