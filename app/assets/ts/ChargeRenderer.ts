@@ -31,7 +31,7 @@ export default class ChargeRenderer extends Renderer {
       ? chargeLayer.append("rect")
       : chargeLayer.append("path");
 
-    this.drawCharge(currentCharge, chargeLayer);
+    this.drawCharge(currentCharge);
 
     if (quarter) {
       chargeLayer.attr("clip-path", `url(#${quarter})`);
@@ -40,8 +40,7 @@ export default class ChargeRenderer extends Renderer {
     this.applyTransforms(currentCharge, quarter);
   }
 
-  protected drawCharge(currentCharge: d3.Selection<d3.BaseType, {}, HTMLElement, any>,
-                       chargeLayer?: d3.Selection<d3.BaseType, {}, HTMLElement, any>): void {
+  protected drawCharge(currentCharge: d3.Selection<d3.BaseType, {}, HTMLElement, any>): void {
     // Apply specifications
     if (!ChargeShapes.hasChargePath(this.charge)) {
       throw new Error(`Don't know how to draw ${this.charge}`);
@@ -64,7 +63,9 @@ export default class ChargeRenderer extends Renderer {
       transform = "sinister";
     }
 
-    const transformToApply: string = ChargeShapes.chargeShapes(this.charge).transforms(transform);
-    currentCharge.attr("transform", transformToApply);
+    if (transform) {
+      const transformToApply: string = ChargeShapes.chargeShapes(this.charge).transforms(transform);
+      currentCharge.attr("transform", transformToApply);
+    }
   }
 }
