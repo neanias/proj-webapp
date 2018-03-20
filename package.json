@@ -10,14 +10,17 @@
   "dependencies": {},
   "devDependencies": {
     "@types/d3-selection": "^1.2.0",
+    "@types/jest": "^22.2.0",
     "@types/jquery": "^3.2.16",
     "css-loader": "^0.28.7",
     "d3-selection": "^1.2.0",
     "extract-text-webpack-plugin": "~4.0.0-alpha.0",
+    "jest": "^22.4.2",
     "jquery": "^3.2.1",
     "node-sass": "^4.7.2",
     "sass-lint": "^1.12.1",
     "sass-loader": "^6.0.6",
+    "ts-jest": "^22.4.2",
     "ts-loader": "^4.0.0",
     "tslint": "^5.9.0",
     "typedoc": "^0.10.0",
@@ -32,6 +35,21 @@
     "watch": "webpack --mode development -w",
     "lint": "yarn run tslinter && yarn run sasslinter",
     "tslinter": "tslint -p . -c tslint.json",
-    "sasslinter": "sass-lint app/assets/scss"
+    "sasslinter": "sass-lint app/assets/scss",
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }
