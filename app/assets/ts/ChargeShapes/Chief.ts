@@ -9,7 +9,7 @@ export default class Chief extends AShape {
     y: "8.1713638",
   }));
 
-  public transforms(transform: EQuarter): string {
+  public transforms(transform: string): string {
     switch (transform) {
       case EQuarter.TL:
         return "scale(0.55)";
