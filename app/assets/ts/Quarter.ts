@@ -6,15 +6,15 @@ import QuarterRenderer from "./QuarterRenderer";
 
 export default class Quarter {
   /** Specifies which of the quarters this object will render. Lines up with paths in [[QuarterShapes]]. */
-  private quarter: EQuarter;
+  private readonly quarter: EQuarter;
   /** Adds a specific shape for drawing the quarter, acts like a whole shield for the [[charges]]. */
-  private quarterRenderer: QuarterRenderer;
+  private readonly quarterRenderer: QuarterRenderer;
   /** The [[ChargeRenderer]]s to render in this quarter. */
-  private charges: ChargeRenderer[];
+  private readonly charges: ChargeRenderer[];
   /** The D3 selection for the whole svg element. Useful for adding paths as clipPaths. */
-  private svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
+  private readonly svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
   /** The D3 selection for just the charge_layer `<g/>` element */
-  private parentsChargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
+  private readonly parentsChargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
 
   constructor(index: number, field: ETincture, charges: ICharge[], svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>,
               parentsChargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>) {

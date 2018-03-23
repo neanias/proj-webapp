@@ -37,5 +37,5 @@ export default class ChargeShapes {
   /**
    * Known charges.
    */
-  private static chargePaths: string[] = ["bend", "chief", "cross", "saltire"];
+  private static readonly chargePaths: string[] = ["bend", "chief", "cross", "saltire"];
 }

@@ -19,19 +19,19 @@ export default class Blazon {
   private chargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
 
   /** The payload from the server, turned into a more regular/agreeable format */
-  private specifications: Map<string, any>;
+  private readonly specifications: Map<string, any>;
   /** Tincture for the field of the shield. May be [[ETincture.Quarterly]]. */
-  private field: ETincture;
+  private readonly field: ETincture;
   /** Optional array of Quarters. Populated if quarterly shield */
-  private quarters?: Quarter[];
+  private readonly quarters?: Quarter[];
   /** Optional array of ChargeRenderers. Populated if non-quarterly shield */
-  private charges?: ChargeRenderer[];
+  private readonly charges?: ChargeRenderer[];
 
   /**
    * @param svg  The D3 selection, generally the top level SVG node in the template
    * @param data  The whole JSON payload sent up from the server
    */
-  constructor(svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>, private data: { key: string; }) {
+  constructor(svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>, private readonly data: { key: string; }) {
     this.specifications = new Map<string, any>(Object.entries(this.data));
     this.field = this.specifications.get("field");
     this.populateSVGSelectors(svg);

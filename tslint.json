@@ -5,7 +5,10 @@
     ],
     "jsRules": {},
     "rules": {
-      "no-unused-variable": true
+      "no-unused-variable": true,
+      "prefer-object-spread": true,
+      "prefer-readonly": true,
+      "no-redundant-jsdoc": true
     },
     "rulesDirectory": []
 }
