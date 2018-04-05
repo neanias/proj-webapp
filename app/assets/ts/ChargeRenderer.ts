@@ -56,9 +56,10 @@ export default class ChargeRenderer extends Renderer {
 
     // forEach returns the value before the key
     ChargeShapes.chargeShapes(this.charge).dimensions.forEach((property, attribute) => {
-      currentCharge.attr(attribute, property)
-        .classed(this.tincture, true);
+      currentCharge.attr(attribute, property);
     });
+
+    currentCharge.classed(this.tincture, true);
   }
 
   /**
