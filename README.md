@@ -32,6 +32,8 @@ To build assets for **production**, run
 
 ## Running
 
+**You must build the assets before you run the server for the first time!**
+
 To serve the website in development, run
 
     FLASK_DEBUG=1 FLASK_APP=app.py flask run
