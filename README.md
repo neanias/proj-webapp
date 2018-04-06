@@ -22,6 +22,14 @@ To install the web dependencies, run
 
     yarn install
 
+To build assets during **development**, run
+
+    yarn devBuild
+
+To build assets for **production**, run
+
+    yarn build
+
 ## Running
 
 To serve the website in development, run
