@@ -1,5 +1,6 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+//const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, 'app', 'assets'),
@@ -14,22 +15,33 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          use: 'css-loader?importLoaders=1'
-        }),
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: './css'
+            },
+          },
+          'css-loader',
+        ],
         exclude: /node_modules/
       },
       {
         test: /\.sass$/,
-        loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
+        use: ['css-loader', 'sass-loader'],
+        //loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
         exclude: /node_modules/
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin({
+    //new ExtractTextPlugin({
+    //  filename: './css/[name].bundle.css',
+    //  allChunks: true
+    //}),
+    new MiniCssExtractPlugin({
       filename: './css/[name].bundle.css',
-      allChunks: true
+      chunkFilename: './css/[id].css',
     }),
   ],
   resolve: {
