@@ -1,5 +1,6 @@
 import json
 import os
+import generate
 
 from flask import Flask, render_template, request, jsonify
 
@@ -23,7 +24,8 @@ def index():
 def parse():
     """Parse blazon text using 'backend'"""
     blazon = request.get_json()['blazon']
-    return jsonify(parse_blazon(blazon))
+    print(generate.parse_blazon(blazon))
+    return jsonify(generate.parse_blazon(blazon))
 
 
 def parse_blazon(blazon):
