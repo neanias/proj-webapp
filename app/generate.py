@@ -44,14 +44,12 @@ def parse_blazon(blazon):
     else:
 	# Convert Tree to dict to prepare it for JSON serialisation
         output_data = tree_to_dict(output_data)
-
         # If a tincture is in the top level of the dictionary, change its name to "field"
         if ("tincture" in output_data.keys()):
             output_data["field"] = output_data["tincture"]
             output_data.pop("tincture")
-
         # Convert dict to JSON
-            return (output_data)
+        return (output_data)
     
 
 def generate_blazons(grammarfile, n, depth = None):
@@ -176,6 +174,8 @@ def disambiguate_colours(tokens):
     return tokens
 
 
+
+
 def reorder(tokens):
     sections = [[]]
     current_sections = [0]
@@ -206,8 +206,8 @@ def reorder(tokens):
 
 def tree_to_dict(tree):
     new_dict = {}
-
     if (tree.label() in ["QFirst", "QSecond", "QThird", "QFourth"]):
+
         if (len(tree) == 3):
             return tree_to_dict(tree[2])
         else:
@@ -239,8 +239,8 @@ def tree_to_dict(tree):
                     # Add field label to indicate quarterly type
                     new_dict.update({"field": "quarterly"})
 
-                    new_dict.update({"charges": [tree_to_dict(t[1]), tree_to_dict(t[2]),
-                        tree_to_dict(t[3]), tree_to_dict(t[4])]})
+                    new_dict.update({"quarters": list(map(tinc_to_field, [tree_to_dict(t[1]), tree_to_dict(t[2]),
+                                                                          tree_to_dict(t[3]), tree_to_dict(t[4])]))})
                 elif (t.label() == "Orient"):
                     if (t[0] == "sinister"):
                         new_dict.update({"sinister": True})
@@ -252,9 +252,13 @@ def tree_to_dict(tree):
                 return tree_to_dict(t)
         else:
             return t
-
     return new_dict
 
+def tinc_to_field(output_data):
+    if ("tincture" in output_data.keys()) and ("charges" in output_data.keys()):
+        output_data["field"] = output_data["tincture"]
+        output_data.pop("tincture")
+    return output_data
 
 colours = [
     "gules",
