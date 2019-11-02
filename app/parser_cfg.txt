@@ -1,0 +1,36 @@
+S -> Field
+Field -> Tinc | Tinc ChP | DivP | Tinc DivP
+ChP -> Number Charge Tinc | Number Charge Orient Tinc
+
+DivP -> QuartP | ChevP | SaltP
+
+QuartP -> 'quarterly' QFirst QSecond QThird QFourth 
+
+QFirst -> 'first' Field | 'first' 'quarter' Field 
+QSecond -> 'second' Field | 'second' 'quarter' Field
+QThird -> 'third' Field | 'third' 'quarter' Field
+QFourth -> 'fourth' Field | 'fourth' 'quarter' Field
+
+ChevP -> 'party' 'per' 'chevron' CFirst CSecond
+
+CFirst -> 'first' Field
+CSecond -> 'second' Field
+ 
+SaltP -> 'party' 'per' 'saltire' SFirst SSecond SThird SFourth
+
+SFirst -> 'first' Field  
+SSecond -> 'second' Field
+SThird -> 'third' Field 
+SFourth -> 'fourth' Field
+
+Sep -> 'bend' | 'chevron' | 'saltire' | 'fess' | 'pale' | 'cross' | 'pall' 
+Number -> 'a' | 'an' | 'two' | 'three' | 'four' | 'five' | 'six' | 'seven' | 'eight' | 'nine' | 'ten' | 'eleven' | 'twelve'
+Tinc -> 'or' | 'argent' | 'azure' | 'gules' | 'purpure' | 'sable' | 'vert'
+Orient -> 'sinister' | 'dexter' | 'reversed'
+
+Charge -> HonOrdinary | Ordinary | MobCharge | CrossVar 
+
+HonOrdinary -> 'chief' | 'bend' | 'pale' | 'fess' | 'chevron' | 'cross' | 'saltire' 
+Ordinary -> 'pall' | 'pile' | 'pile reversed' | 'quarter' | 'canton' | 'bordure' | 'orle' | 'bars' | 'fret' | 'flaunches' | 'label' | 'gyron'
+MobCharge -> 'inescutcheon' | 'lozenge' | 'mascle' | 'rustre' | 'billet' | 'bezant' | 'fountain' | 'annulet' | 'star' 'and' 'crescent' | 'mullet' | 'mullet' 'pierced' | 'fleurdelis' | 'rose'
+CrossVar -> 'cross' 'bottony' | 'cross' 'crosslet' | 'cross' 'flory' | 'maltese' 'cross' | 'cross' 'moline' | 'cross' 'patée' | 'cross' 'patonce' | 'cross' 'polent'
