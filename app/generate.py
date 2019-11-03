@@ -205,7 +205,9 @@ def reorder(tokens):
 
 
 def tree_to_dict(tree):
-    new_dict = {}
+    new_dict = {
+        "charges": [],
+    }
     if (tree.label() in ["QFirst", "QSecond", "QThird", "QFourth"]):
 
         if (len(tree) == 3):
