@@ -1,6 +1,6 @@
 {
   "name": "proj-webapp",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "Webapp front-end for Honours Project",
   "main": "index.js",
   "repository": "git@github:neanias/proj-webapp.git",
@@ -13,8 +13,8 @@
     "@types/jquery": "^3.2.16",
     "css-loader": "^0.28.7",
     "d3-selection": "^1.2.0",
-    "extract-text-webpack-plugin": "~4.0.0-alpha.0",
     "jquery": "^3.2.1",
+    "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.7.2",
     "sass-lint": "^1.12.1",
     "sass-loader": "^6.0.6",
@@ -23,7 +23,7 @@
     "typedoc": "^0.10.0",
     "typescript": "^2.6.1",
     "webpack": "^4.0.0",
-    "webpack-cli": "^2.0.9"
+    "webpack-cli": "~3.3.4"
   },
   "scripts": {
     "docs": "typedoc --out docs app/assets/ts",
