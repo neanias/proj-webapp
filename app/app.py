@@ -24,7 +24,6 @@ def index():
 def parse():
     """Parse blazon text using 'backend'"""
     blazon = request.get_json()['blazon']
-    print(generate.parse_blazon(blazon))
     return jsonify(generate.parse_blazon(blazon))
 
 
