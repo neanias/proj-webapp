@@ -1,6 +1,7 @@
 S -> Field
-Field -> Tinc | Tinc ChP | DivP | Tinc DivP
-ChP -> Number Charge Tinc | Number Charge Orient Tinc
+Field -> Tinc | Tinc Charges | DivP | Tinc DivP
+Charges -> ChP | ChP Charges
+ChP -> Number Charge Tinc | Number Charge Orient Tinc 
 
 DivP -> QuartP | ChevP | SaltP
 

@@ -2,6 +2,7 @@ import json
 import os
 import generate
 
+
 from flask import Flask, render_template, request, jsonify
 
 
@@ -33,10 +34,16 @@ def parse_blazon(blazon):
         "field": "argent",
         "charges": [
             {
-                "charge": "bend",
+             	"charge": "chief",
+                "sinister": True,
+                "tincture": "sable"
+            },
+            {
+              	"charge": "saltire",
                 "sinister": True,
                 "tincture": "gules"
             }
+
         ]
     })
 

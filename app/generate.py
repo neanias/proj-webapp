@@ -214,12 +214,18 @@ def tree_to_dict(tree):
             return tree_to_dict(tree[2])
         else:
             return tree_to_dict(tree[1])
-
     for t in tree:
         if (isinstance(t, Tree)):
             if (t.label() in alias_table):
                 # For Charge Phrases
-                if (t.label() == "ChP"):
+                if (t.label() == "Charges"):
+                    if (len(t) == 1):
+                        new_dict['charges'].extend(tree_to_dict(t)['charges']  )
+                    else:
+#                        print(tree_to_dict(t))
+                        new_dict['charges'].extend(tree_to_dict(t)['charges'])
+#                        print(tree_to_dict(t[1]))                        
+                elif (t.label() == "ChP"):
                     # Get number of copies of charges on field
                     charge_no = tree_to_dict(t[0])
 
@@ -276,6 +282,7 @@ colours = [
 alias_table = {
     "Tinc": "tincture",
     "Charge": "charge",
+    "Charges" : "charges",
     "ChP": "charges",
     "QuartP": "quarters",
     "Orient": "sinister"
