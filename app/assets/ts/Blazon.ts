@@ -12,7 +12,7 @@ import Quarter from "./Quarter";
 export default class Blazon {
   // SVG selectors
   /** The D3 selection, generally the top level SVG node in the template */
-  private svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
+  private svg: d3.Selection<d3.BaseType, any, HTMLElement, any>;
   /** The D3 selection for the whole shield element */
   private shield: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
   /** The D3 selection for just the charge_layer `<g/>` element */
@@ -31,7 +31,7 @@ export default class Blazon {
    * @param svg  The D3 selection, generally the top level SVG node in the template
    * @param data  The whole JSON payload sent up from the server
    */
-  constructor(svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>, private data: { key: string; }) {
+  constructor(svg: d3.Selection<d3.BaseType, any, HTMLElement, any>, private data: { key: string; }) {
     this.specifications = new Map<string, any>(Object.entries(this.data));
     this.field = this.specifications.get("field");
     this.populateSVGSelectors(svg);
