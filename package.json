@@ -39,7 +39,7 @@
     "build": "webpack --mode production",
     "watch": "webpack --mode development -w",
     "lint": "yarn run tslinter && yarn run sasslinter",
-    "tslinter": "tslint -p . -c tslint.json",
+    "tslinter": "eslint --ext .ts",
     "sasslinter": "sass-lint app/assets/scss"
   }
 }
