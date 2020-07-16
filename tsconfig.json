@@ -10,7 +10,8 @@
     "lib": ["es2017", "dom"]
   },
   "include": [
-    "app/assets/ts/*.ts"
+    "app/assets/ts/*.ts",
+    ".eslintrc.js"
   ],
   "exclude": [
     "node_modules"
