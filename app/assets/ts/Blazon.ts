@@ -12,14 +12,19 @@ import Quarter from "./Quarter";
 export default class Blazon {
   // SVG selectors
   /** The D3 selection, generally the top level SVG node in the template */
-  private svg: d3.Selection<d3.BaseType, any, HTMLElement, any>;
+  private svg: d3.Selection<d3.BaseType, unknown, HTMLElement, unknown>;
   /** The D3 selection for the whole shield element */
-  private shield: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
+  private shield: d3.Selection<d3.BaseType, unknown, HTMLElement, unknown>;
   /** The D3 selection for just the charge_layer `<g/>` element */
-  private chargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
+  private chargesLayer: d3.Selection<
+    d3.BaseType,
+    unknown,
+    HTMLElement,
+    unknown
+  >;
 
   /** The payload from the server, turned into a more regular/agreeable format */
-  private specifications: Map<string, any>;
+  private specifications: Map<string, unknown>;
   /** Tincture for the field of the shield. May be [[ETincture.Quarterly]]. */
   private field: ETincture;
   /** Optional array of Quarters. Populated if quarterly shield */
@@ -31,14 +36,24 @@ export default class Blazon {
    * @param svg  The D3 selection, generally the top level SVG node in the template
    * @param data  The whole JSON payload sent up from the server
    */
-  constructor(svg: d3.Selection<d3.BaseType, any, HTMLElement, any>, private data: { key: string; }) {
-    this.specifications = new Map<string, any>(Object.entries(this.data));
-    this.field = this.specifications.get("field");
+  constructor(
+    svg: d3.Selection<d3.BaseType, unknown, HTMLElement, unknown>,
+    private data: { key: string }
+  ) {
+    this.specifications = new Map<string, unknown>(Object.entries(this.data));
+    this.field = this.specifications.get("field") as ETincture;
     this.populateSVGSelectors(svg);
-    if (this.specifications.has("quarters") && this.field === ETincture.Quarterly) {
-      this.quarters = this.instantiateQuarters(this.specifications.get("quarters"));
+    if (
+      this.specifications.has("quarters") &&
+      this.field === ETincture.Quarterly
+    ) {
+      this.quarters = this.instantiateQuarters(
+        this.specifications.get("quarters") as IBlazon[]
+      );
     } else if (this.specifications.has("charges")) {
-      this.charges = this.instantiateCharges(this.specifications.get("charges"));
+      this.charges = this.instantiateCharges(
+        this.specifications.get("charges") as ICharge[]
+      );
     }
   }
 
@@ -65,12 +80,14 @@ export default class Blazon {
   private instantiateCharges(charges: ICharge[]): ChargeRenderer[] {
     const chargeObjects: ChargeRenderer[] = new Array<ChargeRenderer>();
     for (const charge of charges) {
-      chargeObjects.push(new ChargeRenderer(
-        this.chargesLayer,
-        charge.tincture!,
-        charge.charge,
-        charge.sinister || false,
-      ));
+      chargeObjects.push(
+        new ChargeRenderer(
+          this.chargesLayer,
+          charge.tincture,
+          charge.charge,
+          charge.sinister || false
+        )
+      );
     }
     return chargeObjects;
   }
@@ -82,13 +99,15 @@ export default class Blazon {
   private instantiateQuarters(quarters: IBlazon[]): Quarter[] {
     const quarterObjects: Quarter[] = new Array<Quarter>();
     quarters.forEach((quarter, index) => {
-      quarterObjects.push(new Quarter(
-        index,
-        quarter.field,
-        quarter.charges,
-        this.svg,
-        this.chargesLayer,
-      ));
+      quarterObjects.push(
+        new Quarter(
+          index,
+          quarter.field,
+          quarter.charges,
+          this.svg,
+          this.chargesLayer
+        )
+      );
     });
     return quarterObjects;
   }
@@ -96,7 +115,9 @@ export default class Blazon {
   /**
    * Selects relevant elements of the template to make them available to the class
    */
-  private populateSVGSelectors(svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>): void {
+  private populateSVGSelectors(
+    svg: d3.Selection<d3.BaseType, unknown, HTMLElement, unknown>
+  ): void {
     this.svg = svg;
     this.shield = svg.select("#shield");
     this.chargesLayer = svg.select("#charges_layer");
@@ -107,9 +128,10 @@ export default class Blazon {
    * shield
    */
   private clearShield(): void {
-    $("#charges_layer").children().each((_, element) => element.remove());
+    $("#charges_layer")
+      .children()
+      .each((_, element) => element.remove());
     $("clipPath[id^=quarterly]").each((_, element) => element.remove());
     $("#shield").removeClass();
   }
-
 }

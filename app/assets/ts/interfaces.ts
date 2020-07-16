@@ -34,7 +34,7 @@ export enum EQuarter {
 export interface ICharge {
   charge: ECharge;
   sinister?: boolean;
-  tincture?: ETincture;
+  tincture: ETincture;
 }
 
 export interface IBlazon {

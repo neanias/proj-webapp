@@ -12,17 +12,36 @@ export default class Quarter {
   /** The [[ChargeRenderer]]s to render in this quarter. */
   private charges: ChargeRenderer[];
   /** The D3 selection for the whole svg element. Useful for adding paths as clipPaths. */
-  private svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
+  private svg: d3.Selection<d3.BaseType, unknown, HTMLElement, unknown>;
   /** The D3 selection for just the charge_layer `<g/>` element */
-  private parentsChargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
+  private parentsChargesLayer: d3.Selection<
+    d3.BaseType,
+    unknown,
+    HTMLElement,
+    unknown
+  >;
 
-  constructor(index: number, field: ETincture, charges: ICharge[], svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>,
-              parentsChargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>) {
+  constructor(
+    index: number,
+    field: ETincture,
+    charges: ICharge[],
+    svg: d3.Selection<d3.BaseType, unknown, HTMLElement, unknown>,
+    parentsChargesLayer: d3.Selection<
+      d3.BaseType,
+      unknown,
+      HTMLElement,
+      unknown
+    >
+  ) {
     this.quarter = this.indexToQuarter(index);
     this.charges = this.instantiateCharges(charges);
     this.svg = svg;
     this.parentsChargesLayer = parentsChargesLayer;
-    this.quarterRenderer = new QuarterRenderer(parentsChargesLayer, field, this.quarter, false);
+    this.quarterRenderer = new QuarterRenderer(
+      parentsChargesLayer,
+      field,
+      this.quarter
+    );
   }
 
   public draw(): void {
@@ -58,12 +77,14 @@ export default class Quarter {
   private instantiateCharges(charges: ICharge[]): ChargeRenderer[] {
     const chargeObjects: ChargeRenderer[] = new Array<ChargeRenderer>();
     for (const charge of charges) {
-      chargeObjects.push(new ChargeRenderer(
-        this.parentsChargesLayer,
-        charge.tincture!,
-        charge.charge,
-        charge.sinister || false,
-      ));
+      chargeObjects.push(
+        new ChargeRenderer(
+          this.parentsChargesLayer,
+          charge.tincture,
+          charge.charge,
+          charge.sinister || false
+        )
+      );
     }
     return chargeObjects;
   }

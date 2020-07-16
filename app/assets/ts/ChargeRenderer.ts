@@ -14,8 +14,17 @@ export default class ChargeRenderer extends Renderer {
   /** Whether the charge should be sinister (right-to-left), should only apply to bends. */
   protected sinister: boolean;
 
-  constructor(parentChargesLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any>, tincture: ETincture,
-              charge: ECharge, sinister: boolean) {
+  constructor(
+    parentChargesLayer: d3.Selection<
+      d3.BaseType,
+      unknown,
+      HTMLElement,
+      unknown
+    >,
+    tincture: ETincture,
+    charge: ECharge,
+    sinister: boolean
+  ) {
     super(parentChargesLayer, tincture);
     this.charge = charge;
     this.chargeId = `${this.charge}_${this.getRandomInt()}`;
@@ -24,14 +33,24 @@ export default class ChargeRenderer extends Renderer {
 
   /** Generates new layer for this charge, then draws on the charge, applying transforms where appropriate */
   public draw(quarter?: EQuarter): void {
-    const chargeLayer: d3.Selection<d3.BaseType, {}, HTMLElement, any> = this.parentChargesLayer.append("g")
-      .attr("id", this.chargeId);
+    const chargeLayer: d3.Selection<
+      d3.BaseType,
+      unknown,
+      HTMLElement,
+      unknown
+    > = this.parentChargesLayer.append("g").attr("id", this.chargeId);
 
-    const currentCharge: d3.Selection<d3.BaseType, {}, HTMLElement, any> = (this.charge === ECharge.Chief)
-      ? chargeLayer.append("rect")
-      : chargeLayer.append("path");
+    const currentCharge: d3.Selection<
+      d3.BaseType,
+      unknown,
+      HTMLElement,
+      unknown
+    > =
+      this.charge === ECharge.Chief
+        ? chargeLayer.append("rect")
+        : chargeLayer.append("path");
 
-    this.drawCharge(currentCharge, chargeLayer);
+    this.drawCharge(currentCharge);
 
     if (quarter) {
       chargeLayer.attr("clip-path", `url(#${quarter})`);
@@ -40,22 +59,27 @@ export default class ChargeRenderer extends Renderer {
     this.applyTransforms(currentCharge, quarter);
   }
 
-  protected drawCharge(currentCharge: d3.Selection<d3.BaseType, {}, HTMLElement, any>,
-                       chargeLayer?: d3.Selection<d3.BaseType, {}, HTMLElement, any>): void {
+  protected drawCharge(
+    currentCharge: d3.Selection<d3.BaseType, unknown, HTMLElement, unknown>
+  ): void {
     // Apply specifications
     if (!ChargeShapes.hasChargePath(this.charge)) {
       throw new Error(`Don't know how to draw ${this.charge}`);
     }
 
     // forEach returns the value before the key
-    ChargeShapes.chargeShapes(this.charge).dimensions.forEach((property, attribute) => {
-      currentCharge.attr(attribute, property)
-        .classed(this.tincture, true);
-    });
+    ChargeShapes.chargeShapes(this.charge).dimensions.forEach(
+      (property, attribute) => {
+        currentCharge.attr(attribute, property).classed(this.tincture, true);
+      }
+    );
   }
 
-  private applyTransforms(currentCharge: d3.Selection<d3.BaseType, {}, HTMLElement, any>, quarter?: EQuarter): void {
-    let transform: string = "";
+  private applyTransforms(
+    currentCharge: d3.Selection<d3.BaseType, unknown, HTMLElement, unknown>,
+    quarter?: EQuarter
+  ): void {
+    let transform = "";
     if (quarter && this.sinister) {
       transform = `${quarter} sinister`;
     } else if (quarter && !this.sinister) {
@@ -64,7 +88,9 @@ export default class ChargeRenderer extends Renderer {
       transform = "sinister";
     }
 
-    const transformToApply: string = ChargeShapes.chargeShapes(this.charge).transforms(transform);
+    const transformToApply: string = ChargeShapes.chargeShapes(
+      this.charge
+    ).transforms(transform);
     currentCharge.attr("transform", transformToApply);
   }
 }

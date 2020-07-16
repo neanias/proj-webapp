@@ -2,12 +2,14 @@ import { EQuarter } from "../interfaces";
 import AShape from "./AShape";
 
 export default class Chief extends AShape {
-  public dimensions: Map<string, string> = new Map<string, string>(Object.entries({
-    height: "82.13308",
-    width: "243.61922",
-    x: "8.2475185",
-    y: "8.1713638",
-  }));
+  public dimensions: Map<string, string> = new Map<string, string>(
+    Object.entries({
+      height: "82.13308",
+      width: "243.61922",
+      x: "8.2475185",
+      y: "8.1713638",
+    })
+  );
 
   public transforms(transform: EQuarter): string {
     switch (transform) {

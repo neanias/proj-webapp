@@ -2,10 +2,12 @@ import { EQuarter } from "../interfaces";
 import AShape from "./AShape";
 
 export default class Bend extends AShape {
-  public dimensions: Map<string, string> = new Map<string, string>(Object.entries({
-    // tslint:disable-next-line
-    d: "M 8.053,50.836821 V 8.275 H 50.836821 L 228.70266,186.04979 c -12.13389,20.29289 -20.27626,34.91228 -34.92061,52.69471 z"
-  }));
+  public dimensions: Map<string, string> = new Map<string, string>(
+    Object.entries({
+      d:
+        "M 8.053,50.836821 V 8.275 H 50.836821 L 228.70266,186.04979 c -12.13389,20.29289 -20.27626,34.91228 -34.92061,52.69471 z",
+    })
+  );
 
   public transforms(transform: string): string {
     switch (transform) {

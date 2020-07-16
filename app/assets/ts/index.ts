@@ -4,7 +4,7 @@ import Blazon from "./Blazon";
 
 const svg = d3.select("svg");
 
-function main(data: { key: string; }): void {
+function main(data: { key: string }): void {
   const blazon: Blazon = new Blazon(svg, data);
   blazon.draw();
 }
@@ -15,17 +15,19 @@ $(document).ready(() => {
     const formData = {
       blazon: $("textarea[name=blazon]").val(),
     };
-    $.ajax({
+    void $.ajax({
       contentType: "application/json; charset=UTF-8",
       data: JSON.stringify(formData),
       dataType: "json",
       type: "POST",
       url: "/_parse",
-    }).done((data) => {
-      main(data);
-    }).fail((jqXHR, textStatus) => {
-      alert("Request failed: " + textStatus);
-    });
+    })
+      .done((data) => {
+        main(data);
+      })
+      .fail((jqXHR, textStatus) => {
+        alert("Request failed: " + textStatus);
+      });
     event.preventDefault();
   });
 });
