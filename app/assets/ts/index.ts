@@ -27,7 +27,7 @@ button.addEventListener("click", () => {
         alert(`Request failed: ${response.statusText}`);
         return;
       }
-      const data: { key: string } = await response.json();
+      const data = await response.json() as { key: string };
       main(data);
     });
 });
