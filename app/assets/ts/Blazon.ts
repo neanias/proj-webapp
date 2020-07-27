@@ -1,5 +1,4 @@
 import * as d3 from "d3-selection";
-import * as $ from "jquery";
 
 import ChargeRenderer from "./ChargeRenderer";
 import { ETincture, IBlazon, ICharge } from "./interfaces";
@@ -128,10 +127,18 @@ export default class Blazon {
    * shield
    */
   private clearShield(): void {
-    $("#charges_layer")
-      .children()
-      .each((_, element) => element.remove());
-    $("clipPath[id^=quarterly]").each((_, element) => element.remove());
-    $("#shield").removeClass();
+    // Remove any charges from the shield.
+    const chargesLayer = document.getElementById(
+      "charges_layer"
+    ) as HTMLDivElement;
+    Array.from(chargesLayer.children).forEach((element) => element.remove());
+
+    // Remove any quarters.
+    const quarterly = document.querySelectorAll("clipPath[id^=quarterly]");
+    quarterly.forEach((element) => element.remove());
+
+    // Clear the shield colour.
+    const shield = document.getElementById("shield") as HTMLElement;
+    shield.classList.remove(...shield.classList.values());
   }
 }
