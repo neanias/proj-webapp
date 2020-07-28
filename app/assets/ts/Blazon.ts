@@ -139,6 +139,8 @@ export default class Blazon {
 
     // Clear the shield colour.
     const shield = document.getElementById("shield") as HTMLElement;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     shield.classList.remove(...shield.classList.values());
   }
