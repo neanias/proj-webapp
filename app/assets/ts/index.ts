@@ -8,8 +8,8 @@ function main(data: { key: string }): void {
   blazon.draw();
 }
 
-const request: Request = new Request("_parse");
-const textarea = document.getElementById("#blazon") as HTMLInputElement;
+const request = new Request("_parse");
+const textarea = document.getElementById("blazon") as HTMLInputElement;
 const button = document.querySelector(
   "button.btn.btn-success[type=submit]"
 ) as HTMLButtonElement;
