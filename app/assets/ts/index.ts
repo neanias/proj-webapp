@@ -13,7 +13,7 @@ const textarea = document.getElementById("#blazon") as HTMLInputElement;
 const button = document.querySelector(
   "button.btn.btn-success[type=submit]"
 ) as HTMLButtonElement;
-button.addEventListener("click", () => {
+button.addEventListener("click", (event) => {
   void window
     .fetch(request, {
       method: "POST",
@@ -27,7 +27,8 @@ button.addEventListener("click", () => {
         alert(`Request failed: ${response.statusText}`);
         return;
       }
-      const data = await response.json() as { key: string };
+      const data = (await response.json()) as { key: string };
       main(data);
     });
+  event.preventDefault();
 });
